@@ -9,4 +9,31 @@
 import UIKit
 
 class FactTableViewController: UITableViewController {
+    
+    
+    let factCellIdentifier = "FactCell"
+    var planet: Planet!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.title = planet.name
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return planet.facts.count
+    }
+    
+    override func tableView(_ tableVieew: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableVieew.dequeueReusableCell(withIdentifier: factCellIdentifier, for: indexPath)
+        let animalTitle = planet.facts[indexPath.row]
+        cell.textLabel?.text = animalTitle
+        return cell
+    }
+    
+  
 }
